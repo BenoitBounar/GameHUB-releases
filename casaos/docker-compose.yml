@@ -1,0 +1,60 @@
+# Import CasaOS — GameHuB Serveur
+# CasaOS : Applications → « + » (personnalisée) → « Importer » → coller ce fichier.
+# (Ou : partager ce fichier à quelqu'un qui a un CasaOS / NAS avec Docker Compose.)
+#
+# ⚠️ Nécessite que l'image ghcr.io/benoitbounar/gamehub soit PUBLIQUE.
+
+name: gamehub
+
+services:
+  gamehub:
+    image: ghcr.io/benoitbounar/gamehub:latest
+    container_name: gamehub
+    restart: unless-stopped
+    ports:
+      - target: 3000
+        published: "3000"
+        protocol: tcp
+    environment:
+      - NODE_ENV=production
+      - DATA_PATH=/app/data
+    volumes:
+      - type: bind
+        source: /DATA/AppData/gamehub/data
+        target: /app/data
+    x-casaos:
+      ports:
+        - container: "3000"
+          description:
+            en_us: Web interface / API used by the GameHuB client apps.
+            fr_fr: Interface web / API utilisée par les apps clientes GameHuB.
+      volumes:
+        - container: /app/data
+          description:
+            en_us: Library, config and backups (db.json).
+            fr_fr: Bibliothèque, configuration et sauvegardes (db.json).
+
+x-casaos:
+  architectures:
+    - amd64
+  main: gamehub
+  author: BenoitBounar
+  developer: BenoitBounar
+  category: Games
+  title:
+    en_us: GameHuB
+    fr_fr: GameHuB
+  tagline:
+    en_us: Your multi-platform game library, unified.
+    fr_fr: Votre bibliothèque de jeux multi-plateforme, unifiée.
+  description:
+    en_us: >-
+      GameHuB server. Hosts your unified game library (Steam, Epic, GOG, Amazon)
+      and serves the GameHuB client apps on your network. Point each client's
+      "server address" to http://[NAS-IP]:3000.
+    fr_fr: >-
+      Serveur GameHuB. Héberge votre bibliothèque de jeux unifiée (Steam, Epic,
+      GOG, Amazon) et alimente les apps clientes GameHuB du réseau. Réglez
+      l'« adresse du serveur » de chaque client sur http://[IP-NAS]:3000.
+  icon: https://raw.githubusercontent.com/BenoitBounar/GameHUB-releases/main/icon.png
+  port_map: "3000"
