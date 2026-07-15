@@ -62,8 +62,9 @@ GameHuB = **un serveur** (héberge la bibliothèque) + **des clients** (les PC q
 
 Le serveur est une **image Docker** → il tourne partout.
 
-### CasaOS (1 clic)
-Applications → **+** → app personnalisée → **Importer** → collez [`casaos/docker-compose.yml`](casaos/docker-compose.yml).
+### CasaOS
+**App Store** → *Installer une app personnalisée* → icône **Importer** (en haut à droite) → collez [`casaos/docker-compose.yml`](casaos/docker-compose.yml) → **Envoyer** → **Installer** → **Ouvrir**.
+(Détails pas à pas dans la [doc](https://benoitbounar.github.io/GameHUB-releases/docs.html#casaos).)
 
 ### NAS / Synology / Proxmox / Docker
 ```bash
