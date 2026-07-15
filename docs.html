@@ -174,9 +174,7 @@ docker run -d --name gamehub --restart unless-stopped \
     <p>Dans tous les cas : image <code>ghcr.io/benoitbounar/gamehub:latest</code>, port <code>3000</code>, volume persistant sur <code>/app/data</code>. Adresse pour les clients : <code>http://[IP-de-la-machine]:3000</code>.</p>
 
     <h2 id="maj">Mettre à jour le serveur</h2>
-    <p>En ligne de commande (Docker / NAS / Proxmox) :</p>
-<pre><code>docker compose pull &amp;&amp; docker compose up -d</code></pre>
-    <p>Sur <strong>CasaOS</strong> : les apps personnalisées n'ont pas toujours de bouton « mettre à jour ». Le plus fiable est de <strong>recréer le conteneur avec la dernière image</strong> — via les réglages de l'app (récupérer/pull la nouvelle image), ou en réimportant le compose. En pratique, le serveur change rarement de version : pas besoin de le mettre à jour souvent.</p>
+    <p>Pas besoin d'y penser : <strong>l'application vous prévient</strong> automatiquement quand une mise à jour du serveur est disponible, et vous indique quoi faire (ou la fait pour vous quand c'est possible).</p>
 
     <h2 id="client">Installer le client</h2>
     <p><a href="https://github.com/BenoitBounar/GameHUB-releases/releases/latest">Téléchargez l'installeur</a>, cochez <strong>Client</strong>. Au premier lancement, saisissez l'<strong>adresse de votre serveur</strong> (ex. <code>192.168.1.10:3000</code>). Vous pouvez en changer à tout moment (menu ⚙ → <em>Changer de serveur</em>).</p>
