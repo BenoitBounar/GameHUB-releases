@@ -185,14 +185,46 @@ docker run -d --name gamehub --restart unless-stopped \
     <h2 id="comptes">Connecter ses comptes</h2>
     <p>Chaque serveur démarre <strong>vide</strong> : vous connectez <strong>vos propres</strong> comptes dans <strong>⚙ Paramètres</strong>. Rien n'est partagé.</p>
     <table>
-      <tr><th>Service</th><th>Ce qu'il faut</th></tr>
-      <tr><td>Steam</td><td>Connexion Steam (Connector, <strong>famille incluse</strong>) — ou SteamID + clé API</td></tr>
-      <tr><td>Epic</td><td>Code d'autorisation (OAuth, un bouton dans l'app)</td></tr>
-      <tr><td>GOG</td><td>Identifiant GOG</td></tr>
-      <tr><td>Amazon</td><td>Token Amazon Games</td></tr>
-      <tr><td>IGDB (jaquettes, notes)</td><td>Client ID + Secret — <a href="#igdb">voir ci-dessous</a></td></tr>
-      <tr><td>HowLongToBeat (durées)</td><td>Rien (public)</td></tr>
+      <tr><th>Service</th><th>Ce qu'il faut</th><th></th></tr>
+      <tr><td>Steam</td><td>Connexion Steam (Connector, <strong>famille incluse</strong>) — ou SteamID + clé API</td><td><a href="#steam-help">Plus d'infos →</a></td></tr>
+      <tr><td>Epic</td><td>Code d'autorisation (un bouton dans l'app)</td><td><a href="#epic-help">Plus d'infos →</a></td></tr>
+      <tr><td>GOG</td><td>URL de votre profil public</td><td><a href="#gog-help">Plus d'infos →</a></td></tr>
+      <tr><td>Amazon</td><td>Un petit script + un fichier à importer</td><td><a href="#amazon-help">Plus d'infos →</a></td></tr>
+      <tr><td>IGDB (jaquettes, notes)</td><td>Client ID + Secret</td><td><a href="#igdb">Plus d'infos →</a></td></tr>
+      <tr><td>HowLongToBeat (durées)</td><td>Rien (public)</td><td>—</td></tr>
     </table>
+
+    <h2 id="steam-help">Steam</h2>
+    <p>Deux façons, au choix :</p>
+    <ul>
+      <li><strong>Steam Connector (recommandé — inclut les jeux de la famille)</strong> : ⚙ Paramètres → Steam → entrez votre <strong>identifiant et mot de passe Steam</strong>, validez le code <strong>Steam Guard</strong>. Connexion unique (un jeton est stocké, rien n'est renvoyé ailleurs).</li>
+      <li><strong>Ou SteamID + clé API</strong> (jeux possédés uniquement, sans la famille) : votre <strong>SteamID64</strong> (17 chiffres, ex. <code>7656…</code> — trouvable via <a href="https://steamid.io" target="_blank" rel="noopener">steamid.io</a>) et une clé gratuite sur <a href="https://steamcommunity.com/dev/apikey" target="_blank" rel="noopener">steamcommunity.com/dev/apikey</a>.</li>
+    </ul>
+
+    <h2 id="epic-help">Epic Games</h2>
+    <ol>
+      <li>⚙ Paramètres → Epic → bouton <strong>« Ouvrir Epic (obtenir le code) »</strong>.</li>
+      <li>Connectez-vous à Epic si besoin : une <strong>page JSON</strong> s'affiche dans le navigateur.</li>
+      <li>Copiez la valeur du champ <code>authorizationCode</code> (une longue suite de caractères).</li>
+      <li>Collez-la dans l'app et cliquez <strong>Valider</strong>. Connexion unique (le refresh token est conservé).</li>
+    </ol>
+
+    <h2 id="gog-help">GOG</h2>
+    <p>GOG n'a pas d'API de connexion : on lit votre <strong>profil public</strong>.</p>
+    <ol>
+      <li>Sur <a href="https://www.gog.com" target="_blank" rel="noopener">gog.com</a>, rendez votre profil <strong>public</strong> (Paramètres du profil → Confidentialité).</li>
+      <li>Ouvrez l'onglet <strong>JEUX</strong> de votre profil et copiez l'URL, du type <code>https://www.gog.com/u/PSEUDO/games</code>.</li>
+      <li>Collez-la dans ⚙ Paramètres → GOG → <strong>Synchroniser</strong>.</li>
+    </ol>
+
+    <h2 id="amazon-help">Amazon Games</h2>
+    <p>Amazon ne donne pas de jeton simple : un petit script récupère votre bibliothèque depuis votre PC (l'<strong>appli Amazon Games</strong> doit être installée et connectée).</p>
+    <ol>
+      <li>⚙ Paramètres → Amazon → <strong>« Télécharger le script PowerShell »</strong>.</li>
+      <li>Sur votre PC Windows : clic droit sur le script → <em>Exécuter avec PowerShell</em>.</li>
+      <li>Il crée un fichier <code>amazon_games.json</code> et ouvre son dossier.</li>
+      <li>Glissez ce fichier dans la zone d'import de l'app (⚙ Paramètres → Amazon).</li>
+    </ol>
 
     <h2 id="igdb">Obtenir sa clé IGDB (jaquettes &amp; métadonnées)</h2>
     <p>IGDB passe par un compte <strong>Twitch développeur</strong> (gratuit) :</p>
