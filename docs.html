@@ -111,7 +111,8 @@
     <h2 id="synology">Serveur — sur Synology / NAS</h2>
     <div class="box warn"><strong>Avant tout : votre Synology supporte-t-il Docker ?</strong><br>
       Docker n'est disponible que sur les Synology <strong>compatibles</strong> (surtout modèles Intel/x86 — séries « + » et milieu/haut de gamme). Sur beaucoup de modèles <strong>ARM / entrée de gamme</strong>, l'app <strong>n'apparaît pas du tout</strong> dans le Centre de paquets, quelle que soit la version de DSM. Dans ce cas, hébergez le serveur <strong>ailleurs</strong> : un PC avec l'app Windows « Serveur », un mini-PC, un Raspberry Pi…<br>
-      Pour vérifier : <a href="https://www.synology.com/fr-fr/dsm/packages/ContainerManager" target="_blank" rel="noopener">liste des modèles compatibles Container Manager</a>.</div>
+      Pour vérifier : <a href="https://www.synology.com/fr-fr/dsm/packages/ContainerManager" target="_blank" rel="noopener">liste des modèles compatibles Container Manager</a>.<br><br>
+      <strong>Cas des modèles ARM où Docker a été retiré (ex. DS218) :</strong> Synology a supprimé le paquet Docker de plusieurs modèles ARM. Il n'est alors <strong>plus installable via l'interface</strong>. Deux solutions : passer par <strong>SSH</strong> avec un Docker communautaire (avancé), ou héberger le serveur sur une autre machine. Bonne nouvelle : l'image GameHuB est désormais publiée en <strong>arm64</strong>, donc elle tournera sur ces machines une fois Docker en place.</div>
     <p>Le nom de l'app dépend de votre version de DSM :</p>
     <ul>
       <li><strong>DSM 7.2 / 7.3</strong> → « <strong>Container Manager</strong> »</li>
