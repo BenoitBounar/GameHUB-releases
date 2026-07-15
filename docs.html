@@ -109,9 +109,17 @@
     <p>Adresse pour les clients : <code>http://[IP-du-CasaOS]:3000</code>.</p>
 
     <h2 id="synology">Serveur — sur Synology / NAS</h2>
-    <p>Sur DSM 7, via <strong>Container Manager</strong> :</p>
+    <div class="box warn"><strong>Avant tout : votre Synology supporte-t-il Docker ?</strong><br>
+      Docker n'est disponible que sur les Synology <strong>compatibles</strong> (surtout modèles Intel/x86 — séries « + » et milieu/haut de gamme). Sur beaucoup de modèles <strong>ARM / entrée de gamme</strong>, l'app <strong>n'apparaît pas du tout</strong> dans le Centre de paquets, quelle que soit la version de DSM. Dans ce cas, hébergez le serveur <strong>ailleurs</strong> : un PC avec l'app Windows « Serveur », un mini-PC, un Raspberry Pi…<br>
+      Pour vérifier : <a href="https://www.synology.com/fr-fr/dsm/packages/ContainerManager" target="_blank" rel="noopener">liste des modèles compatibles Container Manager</a>.</div>
+    <p>Le nom de l'app dépend de votre version de DSM :</p>
+    <ul>
+      <li><strong>DSM 7.2 / 7.3</strong> → « <strong>Container Manager</strong> »</li>
+      <li><strong>DSM 7.0 / 7.1</strong> → « <strong>Docker</strong> »</li>
+    </ul>
+    <p>Si l'app est disponible dans le Centre de paquets, installez-la, ouvrez-la, puis :</p>
     <ol>
-      <li>Container Manager → <strong>Projet</strong> → <strong>Créer</strong>.</li>
+      <li><strong>Projet</strong> → <strong>Créer</strong>.</li>
       <li>Nom : <code>gamehub</code> · chemin : un dossier (ex. <code>/docker/gamehub</code>).</li>
       <li>Source : <em>Créer docker-compose.yml</em>, et collez :</li>
     </ol>
