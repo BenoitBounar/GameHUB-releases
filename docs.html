@@ -70,7 +70,8 @@
     <a href="#casaos">Sur CasaOS</a>
     <a href="#synology">Sur Synology / NAS</a>
     <a href="#proxmox">Sur Proxmox</a>
-    <a href="#docker">Docker générique</a>
+    <a href="#docker">Docker (n'importe où)</a>
+    <a href="#autres">Portainer / Unraid / TrueNAS…</a>
     <a href="#maj">Mettre à jour</a>
     <div class="grp">Client</div>
     <a href="#client">Installer le client</a>
@@ -150,7 +151,8 @@
       <li>Une petite <strong>VM</strong> (Debian/Ubuntu) avec Docker, idem.</li>
     </ul>
 
-    <h2 id="docker">Serveur — Docker générique</h2>
+    <h2 id="docker">Serveur — Docker (la méthode universelle)</h2>
+    <p>Le serveur est une <strong>image Docker</strong> : elle tourne sur <strong>n'importe quel hôte Docker</strong> (un simple serveur Linux, un mini-PC, un Raspberry Pi Intel/amd64…). C'est la base de tous les autres cas.</p>
 <pre><code>mkdir -p ./gamehub/data
 docker run -d --name gamehub --restart unless-stopped \
   -p 3000:3000 \
@@ -158,6 +160,16 @@ docker run -d --name gamehub --restart unless-stopped \
   -v $(pwd)/gamehub/data:/app/data \
   ghcr.io/benoitbounar/gamehub:latest</code></pre>
     <p>Ou avec un <code>docker-compose.yml</code> puis <code>docker compose up -d</code>.</p>
+
+    <h2 id="autres">Serveur — Portainer, Unraid, TrueNAS, OMV…</h2>
+    <p>Toutes ces plateformes exécutent <strong>Docker</strong> → c'est le <strong>même fichier compose</strong> partout. Repères par outil :</p>
+    <ul>
+      <li><strong>Portainer / Dockge</strong> : <em>Stacks</em> → <em>Add stack</em> → collez le compose → <em>Deploy</em>.</li>
+      <li><strong>Unraid</strong> : plugin <em>Compose Manager</em> (ou un template Docker) — image <code>ghcr.io/benoitbounar/gamehub:latest</code>, port 3000, volume vers <code>/app/data</code>.</li>
+      <li><strong>TrueNAS SCALE</strong> : <em>Apps</em> → <em>Custom App</em> / Docker Compose — même image, même port, même volume.</li>
+      <li><strong>OpenMediaVault</strong> : plugin <em>compose</em> (omv-extras) → collez le compose.</li>
+    </ul>
+    <p>Dans tous les cas : image <code>ghcr.io/benoitbounar/gamehub:latest</code>, port <code>3000</code>, volume persistant sur <code>/app/data</code>. Adresse pour les clients : <code>http://[IP-de-la-machine]:3000</code>.</p>
 
     <h2 id="maj">Mettre à jour le serveur</h2>
 <pre><code>docker compose pull &amp;&amp; docker compose up -d</code></pre>
